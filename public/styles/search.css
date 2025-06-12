@@ -1,0 +1,72 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Playfair Display', serif;
+  background: url('/images/travel-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main-content {
+  text-align: center;
+  margin-top: 25vh;
+}
+
+.main-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: auto;
+  background-color: white;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 40px 0 0 40px;
+  outline: none;
+}
+
+.search-form button {
+  padding: 0 20px;
+  background-color: #f4a300;
+  border: none;
+  border-radius: 0 40px 40px 0;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.search-form button:hover {
+  background-color: #d28f00;
+}

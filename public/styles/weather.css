@@ -1,0 +1,142 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 20px;
+  color: #fff;
+}
+
+.weather-card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 800px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin-bottom: 40px;
+  gap: 40px;
+}
+
+.weather-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-left img {
+  width: 100px;
+  height: 100px;
+}
+
+.description {
+  font-size: 1.2em;
+  text-transform: capitalize;
+  margin-top: 10px;
+}
+
+.weather-info {
+  flex: 1;
+}
+
+.weather-info h2 {
+  font-size: 2em;
+  margin: 0 0 10px;
+}
+
+.temperature {
+  font-size: 3em;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.detail-item {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-size: 1em;
+}
+
+.tourist-section {
+  width: 100%;
+  max-width: 850px;
+}
+
+.tourist-section h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+.tourist-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.tourist-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  min-width: 200px;
+  padding: 15px;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.tourist-card:hover {
+  transform: translateY(-5px);
+}
+
+.tourist-card img {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.tourist-card h4 {
+  margin: 5px 0;
+  font-size: 1.1em;
+}
+
+.tourist-card p {
+  font-size: 0.9em;
+  color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .weather-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .details {
+    justify-content: center;
+  }
+
+  .tourist-list {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}

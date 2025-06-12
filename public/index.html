@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WanderLite - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #8fc3e3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .branding {
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: 1rem;
+      border-radius: 1.2rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 3rem;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      flex: 1 1 45%;
+      background-color: #4a90e2;
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #357ab7;
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        flex: 1 1 100%;
+      }
+
+      .branding {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="branding">WANDERLITE</div>
+    <div class="button-group">
+      <a href="/search" class="btn">Search Location</a>
+      <a href="/exchange-rate" class="btn">Check Exchange Rate</a>
+    </div>
+  </div>
+</body>
+</html>

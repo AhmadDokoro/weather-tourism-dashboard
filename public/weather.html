@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Display</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/weather.css">
+</head>
+<body>
+  <div class="main-container">
+    <!-- Weather Card -->
+    <div class="weather-card">
+      <div class="weather-left">
+        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather Icon" class="weather-icon" />
+        <div class="description">Clear sky</div>
+      </div>
+      <div class="weather-info">
+        <h2>Kuala Lumpur</h2>
+        <div class="temperature">29°C</div>
+        <div class="details">
+          <div class="detail-item">Humidity: 60%</div>
+          <div class="detail-item">Wind: 10 km/h</div>
+          <div class="detail-item">Feels like: 31°C</div>
+          <div class="detail-item">Pressure: 1012 hPa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tourist Attractions Section -->
+    <section class="attractions-section">
+      <h3>Nearby Tourist Attractions</h3>
+      <div class="attractions-container">
+        
+        <!-- These will be generated dynamically with JS -->
+        <div class="attraction-card">
+          <img src="/images/location1.jpg" alt="Place Image">
+          <h4>Pasar Payang</h4>
+          <p>123 Anywhere Street, Kuala Lumpur</p>
+        </div>
+
+        <div class="attraction-card">
+          <img src="/images/location2.jpg" alt="Place Image">
+          <h4>KL Tower</h4>
+          <p>456 Tower Rd, Kuala Lumpur</p>
+        </div>
+
+        <div class="attraction-card">
+          <img src="/images/location3.jpg" alt="Place Image">
+          <h4>Petronas Twin Towers</h4>
+          <p>789 Skyline Blvd, Kuala Lumpur</p>
+        </div>
+        <!-- i will add more dynamically -->
+      </div>
+    </section>
+  </div>
+
+  <script src="js/weather.js"></script>
+</body>
+</html>

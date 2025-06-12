@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Location</title>
+  <link rel="stylesheet" href="styles/search.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="menu-icon">&#9776;</div>
+    <a href="/exchange" class="nav-link">Check Exchange Rate</a>
+  </nav>
+
+  <main class="main-content">
+    <h1>Where do you want to be?</h1>
+    <form class="search-form" action="/search" method="GET">
+      <input type="text" name="destination" placeholder="Search your destination here..." required />
+      <button type="submit" class="search-button">&#128269;</button>
+    </form>
+  </main>
+  <script>
+    document.querySelector(".search-button").addEventListener("click", async()=>{
+        const city = document.querySelector('.search-form').value;
+
+        window.location.href=`weather.html?city=${encodeURIComponent(city)}`;
+    });
+  </script>
+</body>
+</html>
