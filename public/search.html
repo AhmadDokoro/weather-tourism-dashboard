@@ -15,16 +15,24 @@
 
   <main class="main-content">
     <h1>Where do you want to be?</h1>
-    <form class="search-form" action="/search" method="GET">
-      <input type="text" name="destination" placeholder="Search your destination here..." required />
+
+    <form class="search-form" >
+      <input type="text" class="cityName"  name="destination" placeholder="Search your destination here..." required />
       <button type="submit" class="search-button">&#128269;</button>
     </form>
+
   </main>
   <script>
-    document.querySelector(".search-button").addEventListener("click", async()=>{
-        const city = document.querySelector('.search-form').value;
+    document.querySelector(".search-button").addEventListener("click", async(e)=>{
+        e.preventDefault();
+        const city = document.querySelector('.cityName').value;
 
-        window.location.href=`weather.html?city=${encodeURIComponent(city)}`;
+        if(city){
+          window.location.href=`weather.html?city=${encodeURIComponent(city)}`;
+        }else{
+          alert("city cannot be empty");
+        }
+        
     });
   </script>
 </body>
