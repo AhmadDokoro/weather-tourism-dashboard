@@ -140,3 +140,95 @@ body {
     overflow-x: auto;
   }
 }
+
+
+
+
+/* 🌍 MAP & ATTRACTION SECTION STYLES */
+
+#map {
+  width: 100%;
+  max-width: 900px;
+  height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  margin: 0 auto 30px;
+}
+
+#result {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 20px auto;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #fff;
+}
+
+#result p strong {
+  color: #f4a300;
+}
+
+#attractionType {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 20px;
+  background: #ffffff;
+  color: #333;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+#attractionType:hover {
+  background: #f4f4f4;
+}
+
+label[for="attractionType"] {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-right: 10px;
+  color: #fff;
+}
+
+#places {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+#places h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+#places div ul li {
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  list-style: none;
+  transition: 0.3s;
+}
+
+#places div ul li:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+#places a {
+  text-decoration: none;
+  color: #f4a300;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+#places a:hover {
+  text-decoration: underline;
+}

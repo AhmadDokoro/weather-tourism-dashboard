@@ -6,7 +6,7 @@
                 fetch(`/weather?city=${encodeURIComponent(city)}`)
                 .then(res => res.json())
                 .then(data => {
-                        console.log("Weather data: ",data);
+                        
                         document.querySelector(".weather-icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
                         document.querySelector(".description").innerHTML = data.weather[0].description;
                         document.querySelector(".weather-info h2").innerHTML = data.name;
@@ -23,11 +23,4 @@
                 .catch(err =>{
                         console.error("Error fectching weather data ",err);
                 })
-        });
-
-
-        fetch(`/attractions?city=${city}`)
-        .then(res => res.json())
-        .then(data =>{
-
         });

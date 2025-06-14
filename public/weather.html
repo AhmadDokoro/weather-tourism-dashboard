@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="wid  th=device-width, initial-scale=1.0"/>
   <title>Weather Display</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/weather.css">
 </head>
+
+
+
 <body>
   <div class="main-container">
     <!-- Weather Card -->
@@ -27,34 +35,24 @@
       </div>
     </div>
 
-    <!-- Tourist Attractions Section -->
-    <section class="attractions-section">
-      <h3>Nearby Tourist Attractions</h3>
-      <div class="attractions-container">
-        
-        <!-- These will be generated dynamically with JS -->
-        <div class="attraction-card">
-          <img src="/images/location1.jpg" alt="Place Image">   
-          <h4>Pasar Payang</h4>
-          <p>123 Anywhere Street, Kuala Lumpur</p>
-        </div>
 
-        <div class="attraction-card">
-          <img src="/images/location2.jpg" alt="Place Image">
-          <h4>KL Tower</h4>
-          <p>456 Tower Rd, Kuala Lumpur</p>
-        </div>
+    <div class="result" id="result">Loading...</div>
+    <div style="margin: 20px 0;">
+    
+      <div id="map" style="height: 400px;"></div>
+      <label for="attractionType"><strong>Select Attraction Type:</strong></label>
+      <select id="attractionType">
+          <option value="tourism.sights">Sights</option>
+          <!-- <option value="tourism.museum">Museums</option> -->
+          <option value="leisure.park">Parks</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="catering.restaurant">Restaurants</option>
+      </select>
+    </div>
+    <div class="places" id="places">Loading attractions...</div>
 
-        <div class="attraction-card">
-          <img src="/images/location3.jpg" alt="Place Image">
-          <h4>Petronas Twin Towers</h4>
-          <p>789 Skyline Blvd, Kuala Lumpur</p>
-        </div>
-        <!-- i will add more dynamically -->
-      </div>
-    </section>
-  </div>
 
   <script src="js/weather.js"></script>
+  <script src="js/city.js"></script>
 </body>
 </html>
