@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Currency Exchange</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #f0f4f8);
+      background: url('/images/travel-bg.jpg') no-repeat center center fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #00796b;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    select, input[type="number"] {
+      padding: 14px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      transition: border 0.2s ease;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #00796b;
+      box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1);
+    }
+
+    button {
+      padding: 14px;
+      background-color: #00796b;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .exit a{
+      text-align: center;
+      text-decoration: none;
+      margin: auto;
+      color: green;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="card">
+    <h1>Currency Exchange</h1>
+    <form id="exchange-form">
+      <input type="number" name="amount" placeholder="Amount (e.g. 100)" required min="0.01" step="any" />
+
+      <select name="from" id="from-currency" required>
+        <option value="" disabled selected>Select FROM currency</option>
+      </select>
+
+      <select name="to" id="to-currency" required>
+        <option value="" disabled selected>Select TO currency</option>
+      </select>
+
+      <button type="submit">Convert</button>
+    </form>
+    <div class="footer">Example: 100 USD → MYR</div>
+    <div class="exit"><a href="index.html">Exit</a></div>
+  </div>
+
+  <script>
+    const currencyMap = {
+    USD: "US Dollar",
+    EUR: "Euro",
+    GBP: "British Pound",
+    JPY: "Japanese Yen",
+    CAD: "Canadian Dollar",
+    AUD: "Australian Dollar",
+    MYR: "Malaysian Ringgit",
+    IDR: "Indonesian Rupiah",
+    SGD: "Singapore Dollar",
+    CNY: "Chinese Yuan",
+    INR: "Indian Rupee",
+    PHP: "Philippine Peso",
+    THB: "Thai Baht",
+    KRW: "South Korean Won",
+    NZD: "New Zealand Dollar",
+    CHF: "Swiss Franc",
+    HKD: "Hong Kong Dollar",
+    ZAR: "South African Rand",
+    BRL: "Brazilian Real",
+    SEK: "Swedish Krona",
+    NOK: "Norwegian Krone",
+    DKK: "Danish Krone",
+    PLN: "Polish Zloty",
+    MXN: "Mexican Peso",
+    RUB: "Russian Ruble",
+    AED: "Emirati Dirham",
+    BHD: "Bahraini Dinar",
+    VND: "Vietnamese Dong",
+    TRY: "Turkish Lira",
+    ARS: "Argentine Peso",
+    NGN: "Nigerian Naira",
+    EGP: "Egyptian Pound",
+    PKR: "Pakistani Rupee",
+    LKR: "Sri Lankan Rupee"
+  };
+
+  const currencyCodes = Object.keys(currencyMap);
+
+  const fromSelect = document.getElementById("from-currency");
+  const toSelect = document.getElementById("to-currency");
+
+  currencyCodes.forEach(code => {
+    const label = `${code} - ${currencyMap[code]}`;
+    const optionFrom = new Option(label, code);
+    const optionTo = new Option(label, code);
+    fromSelect.appendChild(optionFrom);
+    toSelect.appendChild(optionTo);
+  });
+    document.getElementById("exchange-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const amount = this.amount.value.trim();
+      const from = this.from.value;
+      const to = this.to.value;
+
+      if (amount && from && to) {
+        window.location.href = `result.html?from=${from}&to=${to}&amount=${amount}`;
+      }
+    });
+  </script>
+</body>
+</html>
