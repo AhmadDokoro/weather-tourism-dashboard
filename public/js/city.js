@@ -116,7 +116,4 @@ if (city) {
   document.getElementById('places').innerHTML = '';
 }
 
-if (city) {
-  console.log("Calling fetchLocation with:", city);  // Add this
-  fetchLocation(city);
-}
+

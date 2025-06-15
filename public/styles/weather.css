@@ -12,6 +12,17 @@ body {
   color: #fff;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.main-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
 .weather-card {
   display: flex;
   align-items: center;
@@ -141,10 +152,43 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+  body {
+    padding: 10px 2px;
+  }
+  .weather-card {
+    padding: 12px 4px;
+    gap: 12px;
+    border-radius: 12px;
+    max-width: 100%;
+  }
+  .weather-left img {
+    width: 60px;
+    height: 60px;
+  }
+  .weather-info h2 {
+    font-size: 1.1em;
+  }
+  .temperature {
+    font-size: 1.5em;
+  }
+  .details {
+    gap: 6px;
+    font-size: 0.95em;
+  }
+  #map {
+    height: 220px;
+    border-radius: 8px;
+  }
+  #result, #places {
+    padding: 10px 4px;
+    font-size: 0.98em;
+    border-radius: 8px;
+  }
+}
 
 
-
-/* 🌍 MAP & ATTRACTION SECTION STYLES */
+/*ATTRACTION */
 
 #map {
   width: 100%;
