@@ -1,4 +1,4 @@
-# 🌍 WanderLite — Smart Tourism Dashboard with Weather, Currency & Attractions
+# 🌍 WanderLite Smart Tourism Dashboard with Weather, Currency & Attractions
 
 **WanderLite** is a lightweight and smart tourism dashboard built with Node.js and Express.js. It helps users search any city and instantly view real-time weather, currency exchange rates, and top tourist attractions — all in one place. Designed for travelers and explorers who want to plan ahead.
 
@@ -22,16 +22,16 @@
 ## 🛠️ Tech Stack
 
 **Frontend:**
-- HTML5, CSS3
-- JavaScript (Vanilla)
+- HTML5, CSS
+- JavaScript 
 
 **Backend:**
 - Node.js
 - Express.js
 - APIs:
   - OpenWeather API
-  - ExchangeRate API (or similar)
-  - GeoDB Cities API / Google Places API for attractions
+  - ExchangeRate API 
+  - GeoDB Cities API 
 
 **Tools:**
 - Git & GitHub
