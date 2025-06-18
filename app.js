@@ -1,62 +1,57 @@
+// Import required modules
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
-// const fetch = require('node-fetch');
-// const axios = require('axios');
-// const fs = require('fs');
-const cors = require('cors');
-const { rates } = require('./rates');
 
+const cors = require('cors');
+const { rates } = require('./rates'); // Import exchange rates from local file
+
+// Load environment variables from .env file
 dotenv.config();
 const app = express();
 
-//make it to serve static files
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-const port = process.env.PORT || 3000;
-const apiKey = process.env.WEATHER_API_KEY;
-const Base_url = process.env.BASE_URL;
+const port = process.env.PORT || 3000; // Set server port
+const apiKey = process.env.WEATHER_API_KEY; // Weather API key from .env
+const Base_url = process.env.BASE_URL; // (Optional) Base URL from .env
 
-//first page
+// Route: Landing page
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname,'public/landingPage.html'));
 });
 
-
-
-
-//home page
+// Route: Home page
 app.get("/home", (req, res)=>{
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-//Search
+// Route: Search page
 app.get("/search", (req, res)=>{
     res.sendFile(path.join(__dirname, 'public/search.html'));
 });
 
-
-
-
-
+// Route: Weather API proxy
 app.get("/weather", async(req, res)=>{
     const city = req.query.city;
+    // Build OpenWeatherMap API URL
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}`;
 
     try{
+        // Fetch weather data from OpenWeatherMap
         const response = await fetch(url);
         const data = await response.json();
-
+        
+        // Send weather data to frontend
         res.send(data);
     }catch(err){
+        // Log error if fetch fails
         console.log("An error occured while fetching weather information: ",err);
     }
-   
 });
 
-
-
-//exchange rate API
+// Enable CORS for all routes (for API access from frontend)
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -89,9 +84,7 @@ app.get('/api/exchange', (req, res) => {
   });
 });
 
-
-
-
+// Start the server
 app.listen(port, () =>{
     console.log(`Server running on ${port}`);
 })

@@ -1,17 +1,23 @@
-const apiKey = '623b34626fdb4f8a87ef67595adb4c6c'; // OpenCage API Key
-const geoapifyKey = '7f76114dce444a039689d479242acf5b'; // Geoapify API Key
+// OpenCage API Key for geocoding city names
+const apiKey = '623b34626fdb4f8a87ef67595adb4c6c';
+// Geoapify API Key for fetching attractions
+const geoapifyKey = '7f76114dce444a039689d479242acf5b';
+// Get city name from URL query parameters
 const params = new URLSearchParams(window.location.search);
 const city = params.get('city');
 
-//
+
+// Log to help with debugging
 console.log("City JS is running...");
 console.log("City:", city);
 
-
+// Default attraction type for initial load
 const DEFAULT_ATTRACTION_TYPE = 'tourism.sights';
-let map;
+let map; // Leaflet map instance
 
-// Initialize event listener for attraction type dropdown
+
+// Set up event listener for attraction type dropdown
+// When user selects a new type, fetch new attractions for the current map center
 document.addEventListener('DOMContentLoaded', () => {
   const selector = document.getElementById('attractionType');
   if (selector) {
@@ -27,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchLocation(city) {
   try {
+    // Fetch city coordinates from OpenCage API
     const res = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=${apiKey}`);
     const data = await res.json();
     const result = data.results[0];
@@ -35,6 +42,7 @@ async function fetchLocation(city) {
       const lat = result.geometry.lat;
       const lng = result.geometry.lng;
 
+      // Display city info above the map
       document.getElementById('result').innerHTML = `
         <p><strong>City:</strong> ${city}</p>
         <p><strong>Formatted Address:</strong> ${result.formatted}</p>
@@ -44,26 +52,32 @@ async function fetchLocation(city) {
         <p><strong>Timezone:</strong> ${result.annotations.timezone.name}</p>
       `;
 
+      // Initialize Leaflet map centered on city
       map = L.map('map').setView([lat, lng], 12);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+        attribution: '\u00a9 OpenStreetMap contributors'
       }).addTo(map);
 
+      // Add marker for the city
       L.marker([lat, lng]).addTo(map).bindPopup(result.formatted).openPopup();
 
+      // Fetch and display attractions for the city
       const selector = document.getElementById('attractionType');
       const initialType = selector?.value || DEFAULT_ATTRACTION_TYPE;
       fetchAttractions(lat, lng, initialType);
     } else {
+      // No results found for city
       document.getElementById('result').innerHTML = `<p>No results found.</p>`;
     }
   } catch (err) {
+    // Show error if fetch fails
     console.error(err);
-    document.getElementById('result').innerHTML = `<p>Error fetching data.</p>`;
+    document.getElementById('result').innerHTML = `<p>Error fetching data: ${err.message}</p>`;
     document.getElementById('places').innerHTML = '';
   }
 }
 
+//fetch attractions 
 async function fetchAttractions(lat, lon, category = DEFAULT_ATTRACTION_TYPE) {
   try {
     const url = `https://api.geoapify.com/v2/places?categories=${category}&filter=circle:${lon},${lat},5000&limit=5&apiKey=${geoapifyKey}`;
@@ -115,5 +129,4 @@ if (city) {
   document.getElementById('result').innerHTML = `<p>No city provided.</p>`;
   document.getElementById('places').innerHTML = '';
 }
-
 
