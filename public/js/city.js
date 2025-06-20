@@ -88,7 +88,7 @@ async function fetchAttractions(lat, lon, category = DEFAULT_ATTRACTION_TYPE) {
 
     if (!data.features.length) throw new Error('No places found');
 
-    // Clear existing markers (optional: if needed)
+    // Clear existing markers 
     const html = data.features.map((f) => {
       const prop = f.properties;
       const attractionLat = f.geometry.coordinates[1];

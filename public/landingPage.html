@@ -14,11 +14,15 @@
     body, html {
       height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      /* Add background image with overlay */
+      background: linear-gradient(rgba(34, 49, 63, 0.55), rgba(34, 49, 63, 0.55)),
+        url('images/landing-page.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     .landing-container {
-      background-color: #8fc3e3;
-      height: 100vh;
+      min-height: 100vh;
       width: 100vw;
       display: flex;
       flex-direction: column;
@@ -26,67 +30,107 @@
       align-items: center;
       text-align: center;
       padding: 2rem;
+      background: rgba(255,255,255,0.08); /* subtle overlay for extra contrast */
+      box-shadow: 0 0 0 100vw rgba(34,49,63,0.10) inset;
+    }
+
+    .title, .subtitle, .branding, .start-btn {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s forwards;
+      color: #fff;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    }
+    .title { animation-delay: 0.2s; }
+    .subtitle { animation-delay: 0.5s; }
+    .branding { animation-delay: 0.8s; }
+    .start-btn { animation-delay: 1.1s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .title {
       font-size: 2rem;
       font-weight: 600;
-      color: #000;
+      color: #222;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     .subtitle {
       font-size: 2.5rem;
       font-weight: 900;
-      color: #000;
+      color: #222;
       margin: 0.5rem 0 2rem;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.07);
     }
 
     .branding {
-      background-color: rgba(255, 255, 255, 0.2);
+      background: linear-gradient(90deg, #4a90e2 0%, #8fc3e3 100%);
       padding: 1rem 3rem;
       border-radius: 1.5rem;
       font-size: 3rem;
       font-weight: bold;
       color: white;
       margin-bottom: 3rem;
+      box-shadow: 0 4px 24px rgba(74,144,226,0.12);
+      letter-spacing: 3px;
+      border: 2px solid #fff;
     }
 
     .start-btn {
-      background-color: #4a90e2;
+      background: linear-gradient(90deg, #4a90e2 0%, #357ab7 100%);
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem 2.2rem;
       border: none;
       border-radius: 0.7rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 2px 12px rgba(74,144,226,0.10);
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-top: 0.5rem;
     }
 
     .start-btn:hover {
-      background-color: #357ab7;
+      background: linear-gradient(90deg, #357ab7 0%, #4a90e2 100%);
+      transform: scale(1.05);
+      box-shadow: 0 6px 24px rgba(74,144,226,0.18);
     }
 
     .arrow {
       margin-left: 0.5rem;
       font-weight: bold;
+      font-size: 1.3em;
+      transition: transform 0.3s;
+    }
+    .start-btn:hover .arrow {
+      transform: translateX(6px);
     }
 
     @media (max-width: 600px) {
       .title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
       }
       .subtitle {
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
       .branding {
-        font-size: 2.2rem;
-        padding: 0.8rem 2rem;
+        font-size: 1.5rem;
+        padding: 0.7rem 1.2rem;
       }
       .start-btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
       }
     }
   </style>

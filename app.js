@@ -10,17 +10,19 @@ const { rates } = require('./rates'); // Import exchange rates from local file
 dotenv.config();
 const app = express();
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
 
 const port = process.env.PORT || 3000; // Set server port
 const apiKey = process.env.WEATHER_API_KEY; // Weather API key from .env
-const Base_url = process.env.BASE_URL; // (Optional) Base URL from .env
+const Base_url = process.env.BASE_URL; // Base URL for the weather API
 
 // Route: Landing page
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname,'public/landingPage.html'));
 });
+
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route: Home page
 app.get("/home", (req, res)=>{
@@ -32,7 +34,7 @@ app.get("/search", (req, res)=>{
     res.sendFile(path.join(__dirname, 'public/search.html'));
 });
 
-// Route: Weather API proxy
+// Route: Weather API 
 app.get("/weather", async(req, res)=>{
     const city = req.query.city;
     // Build OpenWeatherMap API URL
