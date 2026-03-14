@@ -3,54 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weather Display</title>
+  <title>WanderLite • Destination Insights</title>
 
+  <!-- Leaflet map styles/scripts. -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/weather.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="styles/app.css">
 </head>
-
-
-
 <body>
-  <div class="main-container">
-    <!-- Weather Card -->
-    <div class="weather-card">
-      <div class="weather-left">
-        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather Icon" class="weather-icon" />
-        <div class="description">....</div>
-      </div>
-      <div class="weather-info">
-        <h2>fetching...</h2>
-        <div class="temperature">..</div>
-        <div class="details">
-          <div class="detail-item">Humidity: </div>
-          <div class="detail-item">Wind: </div>
-          <div class="detail-item">Feels like: </div>
-          <div class="detail-item">Pressure: </div>
+  <header class="topbar">
+    <a href="/home" class="brand"><i class="fa-solid fa-earth-africa"></i> WanderLite</a>
+    <nav>
+      <a href="search.html"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+      <a href="exchange.html"><i class="fa-solid fa-money-bill-transfer"></i> Exchange</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <p id="statusBanner" class="status-banner">Preparing destination intelligence...</p>
+
+    <section class="glass-panel weather-hero">
+      <div class="weather-main">
+        <img id="weatherIcon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather icon" class="weather-icon" />
+        <div>
+          <h1 id="cityName">Loading city...</h1>
+          <p id="weatherText">Loading weather...</p>
+          <p id="dateTime" class="muted">Loading local time...</p>
         </div>
       </div>
-    </div>
+      <div class="temperature-block">
+        <div id="temperature" class="temperature">--°C</div>
+        <p class="muted">Live weather from OpenWeather</p>
+      </div>
+    </section>
 
+    <section class="kpi-grid">
+      <article class="glass-panel kpi-card">
+        <h3><i class="fa-solid fa-droplet"></i> Humidity</h3>
+        <p id="statHumidity">--</p>
+      </article>
+      <article class="glass-panel kpi-card">
+        <h3><i class="fa-solid fa-wind"></i> Wind Speed</h3>
+        <p id="statWind">--</p>
+      </article>
+      <article class="glass-panel kpi-card">
+        <h3><i class="fa-solid fa-temperature-half"></i> Feels Like</h3>
+        <p id="statFeelsLike">--</p>
+      </article>
+      <article class="glass-panel kpi-card">
+        <h3><i class="fa-solid fa-gauge-high"></i> Pressure</h3>
+        <p id="statPressure">--</p>
+      </article>
+    </section>
 
-    <div class="result" id="result">Loading...</div>
-    <div style="margin: 20px 0;">
-    
-      <div id="map" style="height: 400px;"></div>
-      <label for="attractionType"><strong>Select Attraction Type:</strong></label>
-      <select id="attractionType">
-          <option value="tourism.sights">Sights</option>
-          <!-- <option value="tourism.museum">Museums</option> -->
-          <option value="leisure.park">Parks</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="catering.restaurant">Restaurants</option>
-      </select>
-    </div>
-    <div class="places" id="places">Loading attractions...</div>
+    <section class="content-grid">
+      <article class="glass-panel">
+        <h2>Location Details</h2>
+        <ul id="locationMeta" class="meta-list">
+          <li><span>Coordinates</span><strong>--</strong></li>
+          <li><span>Sunrise</span><strong>--</strong></li>
+          <li><span>Sunset</span><strong>--</strong></li>
+          <li><span>Observed</span><strong>--</strong></li>
+        </ul>
+      </article>
 
+      <article class="glass-panel">
+        <div class="section-head">
+          <h2>Top Attractions Nearby</h2>
+          <select id="attractionType" class="modern-select" aria-label="Attraction category">
+            <option value="tourism.sights">Sights</option>
+            <option value="tourism.museum">Museums</option>
+            <option value="leisure.park">Parks</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="catering.restaurant">Restaurants</option>
+          </select>
+        </div>
+        <p id="attractionsStatus" class="muted">Waiting for destination context...</p>
+        <ul id="attractionsList" class="attraction-list">
+          <li class="placeholder">No places loaded yet.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="glass-panel map-panel">
+      <h2>Interactive Map</h2>
+      <div id="map" class="map-canvas"></div>
+    </section>
+  </main>
 
   <script src="js/weather.js"></script>
   <script src="js/city.js"></script>

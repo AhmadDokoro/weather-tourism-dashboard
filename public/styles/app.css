@@ -1,0 +1,595 @@
+/*
+  WanderLite design system (bright + modern)
+  -------------------------------------------
+  Focus: high contrast readability, energetic colors, rich motion, and
+  reusable components across all pages.
+*/
+
+:root {
+  --bg: #f6fbff;
+  --bg-secondary: #eef7ff;
+  --panel: rgba(255, 255, 255, 0.8);
+  --panel-border: rgba(56, 124, 255, 0.2);
+  --text: #13335b;
+  --muted: #4e6f95;
+  --accent: #2f8cff;
+  --accent-strong: #1862da;
+  --accent-soft: rgba(47, 140, 255, 0.15);
+  --success: #1ea56a;
+  --danger: #d84343;
+  --radius: 18px;
+  --shadow: 0 16px 34px rgba(24, 98, 218, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 12%, #dff0ff 0%, transparent 35%),
+    radial-gradient(circle at 92% 10%, #e6f5ff 0%, transparent 25%),
+    linear-gradient(180deg, #f8fcff, #eef7ff 45%, #f5fbff);
+}
+
+a {
+  color: inherit;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(47, 140, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.brand {
+  text-decoration: none;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 18px;
+}
+
+.topbar nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar nav a:hover {
+  color: var(--accent-strong);
+}
+
+.page-shell {
+  width: min(1140px, 92vw);
+  margin: 26px auto 40px;
+  display: grid;
+  gap: 18px;
+}
+
+.center-shell {
+  min-height: calc(100vh - 120px);
+  align-content: center;
+}
+
+.glass-panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 0.74rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.hero-subtext,
+.muted {
+  color: var(--muted);
+}
+
+.primary-btn,
+.secondary-btn,
+button,
+input,
+select {
+  font: inherit;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  padding: 11px 16px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(120deg, #5db6ff, var(--accent));
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(47, 140, 255, 0.28);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.secondary-btn,
+.ghost-btn,
+.ghost-link {
+  color: var(--accent-strong);
+  border: 1px solid rgba(47, 140, 255, 0.35);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.secondary-btn:hover,
+.ghost-btn:hover,
+.ghost-link:hover {
+  border-color: var(--accent-strong);
+}
+
+.stack-form {
+  display: grid;
+  gap: 12px;
+}
+
+.stack-form label {
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+input,
+select {
+  background: #fff;
+  color: #17375e;
+  border: 1px solid #bfd8f9;
+  border-radius: 11px;
+  padding: 11px 12px;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.intro-card h1 {
+  margin-top: 6px;
+  margin-bottom: 8px;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+}
+
+.action-grid {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.action-card {
+  text-decoration: none;
+  border: 1px solid #c7defd;
+  border-radius: 14px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.action-card h3 {
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Full-page immersive landing */
+.landing-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(112, 205, 255, 0.26), rgba(255, 255, 255, 0.2)),
+    url('/images/landing-page.jpg') center/cover no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(240, 249, 255, 0.8));
+}
+
+.landing-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, 92vw);
+  margin: 0 auto;
+  padding: 24px 0 36px;
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+.landing-headline h1 {
+  margin: 8px 0;
+  max-width: 760px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.1;
+}
+
+.landing-headline p {
+  max-width: 620px;
+  color: #315882;
+  font-size: clamp(1rem, 1.7vw, 1.15rem);
+}
+
+.floating-elements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.float-chip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(47, 140, 255, 0.25);
+  border-radius: 999px;
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1a4372;
+  font-weight: 600;
+  animation: floaty 6s ease-in-out infinite;
+  box-shadow: 0 10px 20px rgba(47, 140, 255, 0.14);
+}
+
+.float-chip.cloud { top: 16%; left: 8%; }
+.float-chip.clock { top: 21%; right: 10%; animation-delay: 0.8s; }
+.float-chip.money { bottom: 22%; left: 10%; animation-delay: 1.4s; }
+.float-chip.pin { bottom: 18%; right: 12%; animation-delay: 2.1s; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.feature-strip {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.feature-pill {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid #c8defa;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.feature-pill h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature-pill p {
+  margin: 0;
+  color: #446990;
+  font-size: 0.95rem;
+}
+
+/* Search */
+.search-card h1 {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.cityName {
+  flex: 1;
+}
+
+.search-button {
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(120deg, #67beff, var(--accent));
+  padding: 0 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Weather page */
+.status-banner {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(47, 140, 255, 0.09);
+  border: 1px solid rgba(47, 140, 255, 0.2);
+  color: #24528a;
+}
+
+.status-banner.is-error,
+.is-error {
+  color: var(--danger) !important;
+}
+
+.weather-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.weather-main {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.weather-icon {
+  width: 88px;
+  height: 88px;
+}
+
+.weather-main h1 {
+  margin: 0;
+}
+
+.weather-main p {
+  margin: 6px 0 0;
+}
+
+.temperature {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 800;
+  text-align: right;
+  color: #1b63c7;
+}
+
+.temperature-block p {
+  margin: 2px 0 0;
+}
+
+.kpi-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.kpi-card h3 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kpi-card p {
+  margin: 8px 0 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.content-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1.4fr;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.modern-select {
+  min-width: 180px;
+}
+
+.meta-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.meta-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid #d2e4fb;
+  border-radius: 10px;
+  padding: 9px 10px;
+}
+
+.meta-list span {
+  color: var(--muted);
+}
+
+.map-panel h2 {
+  margin-top: 0;
+}
+
+.map-canvas {
+  width: 100%;
+  height: 430px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.attraction-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.attraction-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid #cbe0fb;
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.attraction-card h4 {
+  margin: 0 0 6px;
+}
+
+.attraction-card p {
+  margin: 0 0 4px;
+  color: var(--muted);
+}
+
+.attraction-actions {
+  display: grid;
+  gap: 6px;
+}
+
+.ghost-btn,
+.ghost-link {
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.placeholder {
+  border: 1px dashed #b9d6fa;
+  border-radius: 10px;
+  padding: 12px;
+  color: var(--muted);
+}
+
+/* Exchange */
+.exchange-card h1,
+.result-card h1 {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.result-output {
+  margin: 16px 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #c7defd;
+}
+
+.conversion-highlight {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    padding-inline: 14px;
+  }
+
+  .topbar nav {
+    gap: 10px;
+    font-size: 0.92rem;
+  }
+
+  .landing-inner {
+    padding-top: 16px;
+  }
+
+  .float-chip {
+    display: none;
+  }
+
+  .weather-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .temperature {
+    text-align: left;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-button {
+    padding: 11px 14px;
+  }
+
+  .attraction-card {
+    flex-direction: column;
+  }
+}

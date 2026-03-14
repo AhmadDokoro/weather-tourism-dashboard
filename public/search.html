@@ -3,37 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search Location</title>
-  <link rel="stylesheet" href="styles/search.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <title>WanderLite • Destination Search</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="styles/app.css" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="menu-icon">&#9776;</div>
-    <a href="exchange.html" class="nav-link">Check Exchange Rate</a>
-  </nav>
+  <header class="topbar">
+    <a href="/home" class="brand"><i class="fa-solid fa-earth-africa"></i> WanderLite</a>
+    <nav>
+      <a href="exchange.html"><i class="fa-solid fa-money-bill-transfer"></i> Exchange</a>
+      <a href="/"><i class="fa-solid fa-house"></i> Landing</a>
+    </nav>
+  </header>
 
-  <main class="main-content">
-    <h1>Where do you want to be?</h1>
+  <main class="page-shell center-shell">
+    <section class="glass-panel search-card">
+      <p class="eyebrow">Destination Search</p>
+      <h1>Where do you want to be next?</h1>
+      <p class="hero-subtext">Type any city and WanderLite will generate live weather, map, and attraction intelligence.</p>
 
-    <form class="search-form" >
-      <input type="text" class="cityName"  name="destination" placeholder="Search your destination here..." required />
-      <button type="submit" class="search-button">&#128269;</button>
-    </form>
+      <form class="search-form" id="searchForm">
+        <input type="text" class="cityName" id="cityName" name="destination" placeholder="Search destination e.g. Tokyo, Nairobi, Paris" required />
+        <button type="submit" class="search-button"><i class="fa-solid fa-paper-plane"></i> Explore</button>
+      </form>
 
+      <p id="searchHelp" class="muted">Pro tip: Try major cities for richer attraction results.</p>
+    </section>
   </main>
-  <script>
-    document.querySelector(".search-button").addEventListener("click", async(e)=>{
-        e.preventDefault();
-        const city = document.querySelector('.cityName').value;
-
-        if(city){
-          window.location.href=`weather.html?city=${encodeURIComponent(city)}`;
-        }else{
-          alert("city cannot be empty");
-        }
-        
-    });
-  </script>
+  <script src="js/search.js"></script>
 </body>
 </html>
