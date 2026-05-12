@@ -28,10 +28,16 @@ app.use(express.static(path.join(__dirname, 'public')));
  * @param {Record<string, string | number | undefined>} params
  * @returns {string}
  */
+// Build an URL with query string values.
 function buildUrl(base, params) {
+  
+  // Initialize a new URL object
   const url = new URL(base);
 
+  // Iterate over each parameter and set it in the URL if it's valid
   Object.entries(params).forEach(([key, value]) => {
+    
+    // Skip empty or invalid values
     if (value !== undefined && value !== null && value !== '') {
       url.searchParams.set(key, String(value));
     }
@@ -46,14 +52,20 @@ function buildUrl(base, params) {
  * @param {number} timeoutMs
  * @returns {Promise<any>}
  */
+// fetch JSON data from a given URL with a timeout
 async function fetchJson(url, timeoutMs = 10000) {
+  
+  // Set up an AbortController to handle timeouts
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
+    
+    // Fetch the data and parse it into JSON format
     const response = await fetch(url, { signal: controller.signal });
     const data = await response.json();
 
+    // Check if the response is successful, throw an error if not
     if (!response.ok) {
       const message = data?.message || data?.error || 'Upstream API request failed.';
       throw new Error(message);
@@ -61,6 +73,8 @@ async function fetchJson(url, timeoutMs = 10000) {
 
     return data;
   } finally {
+    
+    // ALWAYS clear the timeout to prevent memory leaks
     clearTimeout(timeoutId);
   }
 }
@@ -188,6 +202,9 @@ async function fetchOverpassAttractions(lat, lon, category, limit) {
   return normalized;
 }
 
+
+
+
 // ---------- Page routes ----------
 
 app.get('/', (_req, res) => {
@@ -205,17 +222,23 @@ app.get('/search', (_req, res) => {
 // ---------- API routes ----------
 
 // Weather data route (dynamic and normalized).
+// fetch weather info for a specific city
 app.get('/api/weather', async (req, res) => {
+  
+  // Extract and clean the city query parameter
   const city = req.query.city?.toString().trim();
 
+  // Validate the city input
   if (!city) {
     return res.status(400).json({ error: 'City query is required.' });
   }
 
+  // Ensure the required API key is configured
   if (!weatherApiKey) {
     return res.status(500).json({ error: 'Missing WEATHER_API_KEY in environment configuration.' });
   }
 
+  // Construct the OpenWeatherMap API URL
   const url = buildUrl('https://api.openweathermap.org/data/2.5/weather', {
     q: city,
     appid: weatherApiKey,
@@ -223,8 +246,11 @@ app.get('/api/weather', async (req, res) => {
   });
 
   try {
+    
+    // Fetch data from OpenWeatherMap
     const data = await fetchJson(url);
 
+    // Map the external API response payload to our custom JSON structure
     return res.json({
       city: data.name,
       country: data.sys?.country,
@@ -251,7 +277,10 @@ app.get('/api/weather', async (req, res) => {
       timezoneOffsetSeconds: data.timezone,
       observedAt: data.dt
     });
+    
   } catch (error) {
+    
+    // Process error response codes based on the returned message
     const statusCode = /not found/i.test(error.message) ? 404 : 502;
     return res.status(statusCode).json({
       error: 'Unable to fetch weather right now.',
@@ -261,17 +290,23 @@ app.get('/api/weather', async (req, res) => {
 });
 
 // Geocode route powered by OpenWeather Geocoding API.
+// fetch geographic coordinates (lat / lon) for a city name
 app.get('/api/geocode', async (req, res) => {
+  
+  // Extract and clean the city query parameter
   const city = req.query.city?.toString().trim();
 
+  // Validate the city input
   if (!city) {
     return res.status(400).json({ error: 'City query is required.' });
   }
 
+  // Ensure weather API key exists
   if (!weatherApiKey) {
     return res.status(500).json({ error: 'Missing WEATHER_API_KEY in environment configuration.' });
   }
 
+  // Construct geocoding API URL
   const url = buildUrl('https://api.openweathermap.org/geo/1.0/direct', {
     q: city,
     limit: 1,
@@ -279,13 +314,17 @@ app.get('/api/geocode', async (req, res) => {
   });
 
   try {
+    
+    // Fetch and extract the location data
     const data = await fetchJson(url);
     const location = data?.[0];
 
+    // Check if the city was successfully located
     if (!location) {
       return res.status(404).json({ error: 'No matching location found.' });
     }
 
+    // Return mapped geocode results
     return res.json({
       city: location.name,
       state: location.state || null,
@@ -294,7 +333,10 @@ app.get('/api/geocode', async (req, res) => {
       lon: location.lon,
       displayName: [location.name, location.state, location.country].filter(Boolean).join(', ')
     });
+    
   } catch (error) {
+    
+    // Handle failures while fetching geocoding data
     return res.status(502).json({
       error: 'Unable to fetch geocoding data right now.',
       details: error.message
