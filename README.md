@@ -29,7 +29,7 @@ It centralizes essential travel intelligence into one clean, accessible interfac
 ## Frontend
 
 - HTML/CSS
-- Vanilla JavaScript
+- JavaScript
 - Font Awesome (modern icon system)
 - Leaflet.js (interactive map)
 
