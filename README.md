@@ -135,12 +135,7 @@ Node.js + Express standalone app
 
 `.env` file for API keys and runtime port
 
-Example:
 
-```
-WEATHER_API_KEY=your_openweather_key
-GEOAPIFY_API_KEY=your_geoapify_key
-PORT=3000
 ```
 
 ## Deployment Challenges
